@@ -1,6 +1,6 @@
 [project]
 name = "aegispt"
-version = "0.1.1"
+version = "0.1.2"
 description = "AegisPT deterministic penetration testing workflow orchestrator for Kali Linux"
 readme = "README.md"
 requires-python = ">=3.10"
