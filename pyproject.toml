@@ -1,0 +1,18 @@
+[project]
+name = "aegispt"
+version = "0.1.0"
+description = "AegisPT deterministic penetration testing workflow orchestrator for Kali Linux"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+aegispt = "pentest_orchestrator.cli:main"
+kali-autopentest = "pentest_orchestrator.cli:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["pentest_orchestrator*"]
