@@ -102,6 +102,20 @@ This pattern reduces manual context switching and preserves clean audit evidence
 - Dockerfile: portable runtime container
 - JSON/Markdown: rules and reports
 
+## Level 2
+
+- Automated CI on GitHub Actions (push + pull requests)
+- Unit tests for core rule/session behaviors
+
+Run tests locally:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e . pytest
+pytest -q
+```
+
 ## Safety Guardrails
 
 - Requires explicit `--authorized` confirmation
