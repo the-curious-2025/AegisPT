@@ -5,7 +5,12 @@ from pentest_orchestrator.rules import RuleEngine
 
 
 def test_rule_engine_matches_web_port_rule() -> None:
-    rules = Path(__file__).resolve().parents[1] / "pentest_orchestrator" / "config" / "default_rules.json"
+    rules = (
+        Path(__file__).resolve().parents[1]
+        / "pentest_orchestrator"
+        / "config"
+        / "default_rules.json"
+    )
     engine = RuleEngine(rules)
 
     findings = [
@@ -22,7 +27,12 @@ def test_rule_engine_matches_web_port_rule() -> None:
 
 
 def test_rule_engine_deduplicates_actions() -> None:
-    rules = Path(__file__).resolve().parents[1] / "pentest_orchestrator" / "config" / "default_rules.json"
+    rules = (
+        Path(__file__).resolve().parents[1]
+        / "pentest_orchestrator"
+        / "config"
+        / "default_rules.json"
+    )
     engine = RuleEngine(rules)
 
     findings = [
