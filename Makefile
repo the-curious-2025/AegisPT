@@ -1,4 +1,4 @@
-.PHONY: install deps run-web run-net report clean docker-build docker-run
+.PHONY: install deps run-web run-net report clean docker-build docker-run release
 
 TARGET ?= 127.0.0.1
 SESSION ?=
@@ -30,3 +30,7 @@ docker-build:
 
 docker-run:
 	docker run --rm -it aegispt:latest aegispt run --target $(TARGET) --authorized --profile web
+
+release:
+	chmod +x scripts/create_release.sh
+	./scripts/create_release.sh $(VERSION)
