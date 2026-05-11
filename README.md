@@ -1,14 +1,15 @@
-# AegisPT (Deterministic, No AI)
+# AegisPT
 
-```text
-    ___             _     ____ _____
+<div align="center">
+<pre>
+   ___             _     ____ _____
    /   |  ___  ____(_)___/ __ \_   _|
   / /| | / _ \/ __/ / __/ /_/ / | |
  / ___ |/  __/ (_/ / /_/ ____/  | |
 /_/  |_|\___/\__/_/\__/_/       |_|
-```
-
-A professional terminal-first penetration testing orchestrator for Kali Linux.
+</pre>
+<p><strong>Deterministic Pentest Orchestrator for Kali Linux</strong></p>
+</div>
 
 This project automates repetitive penetration testing flow with deterministic logic:
 
@@ -24,8 +25,18 @@ Use only on systems you own or are explicitly authorized to test.
 
 ## Quick Start
 
+### Easy Install (Recommended)
+
 ```bash
-cd kali-autopentest
+git clone https://github.com/the-curious-2025/AegisPT.git
+cd AegisPT
+chmod +x scripts/quick_install.sh
+./scripts/quick_install.sh
+```
+
+### Manual Install
+
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e .
@@ -42,6 +53,23 @@ aegispt run --target <TARGET> --authorized --profile web
 aegispt run --target <TARGET> --authorized --profile network
 aegispt resume --session-id <SESSION_ID>
 aegispt report --session-id <SESSION_ID>
+```
+
+## One-Command Workflows
+
+```bash
+make install
+make deps
+make run-web TARGET=10.10.10.10
+make run-net TARGET=10.10.10.10
+make report SESSION=<SESSION_ID>
+```
+
+## Docker Workflow
+
+```bash
+docker build -t aegispt:latest .
+docker run --rm -it aegispt:latest --help
 ```
 
 Banner colors are enabled automatically in interactive terminals.
@@ -65,6 +93,14 @@ aegispt run --target https://target.tld --authorized --profile web
 3. Re-run after every major finding confirmation to keep report and state updated.
 
 This pattern reduces manual context switching and preserves clean audit evidence.
+
+## Stack
+
+- Python: orchestration engine and CLI
+- Shell: installation/bootstrap scripts
+- Makefile: repeatable local workflows
+- Dockerfile: portable runtime container
+- JSON/Markdown: rules and reports
 
 ## Safety Guardrails
 
