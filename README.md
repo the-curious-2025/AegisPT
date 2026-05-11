@@ -89,15 +89,15 @@ docker run --rm -it aegispt:latest --help
 ## Releases
 
 - Changelog is tracked in CHANGELOG.md.
-- Creating a Git tag like `v0.1.1` triggers the release workflow.
+- Creating a Git tag like `v0.1.2` triggers the release workflow.
 - The workflow builds wheel/sdist and publishes a GitHub Release with generated notes.
-- The `make release VERSION=v0.1.1` helper validates the code, builds artifacts, and creates a local annotated tag.
+- The `make release VERSION=v0.1.2` helper validates the code, builds artifacts, and creates a local annotated tag.
 
 Tag example:
 
 ```bash
-make release VERSION=v0.1.1
-git push origin v0.1.1
+make release VERSION=v0.1.2
+git push origin v0.1.2
 ```
 
 Run locally:
