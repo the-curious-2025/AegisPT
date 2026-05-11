@@ -2,30 +2,35 @@
 
 <div align="center">
 <pre>
-   ___             _     ____ _____
-   /   |  ___  ____(_)___/ __ \_   _|
-  / /| | / _ \/ __/ / __/ /_/ / | |
- / ___ |/  __/ (_/ / /_/ ____/  | |
-/_/  |_|\___/\__/_/\__/_/       |_|
+      _                _     ____ _____
+    / \   ___  __ _ (_)___|  _ \_   _|
+   / _ \ / _ \/ _` || / __| |_) || |
+ / ___ \  __/ (_| || \__ \  __/ | |
+/_/   \_\___|\__, |_|___/_|    |_|
+                   |___/
 </pre>
-<p><strong>Deterministic Pentest Orchestrator for Kali Linux</strong></p>
+<p><strong>Fast, deterministic pentest orchestration for Kali Linux.</strong></p>
+<p>
+   <a href="https://github.com/the-curious-2025/AegisPT/actions/workflows/ci.yml">
+      <img alt="CI" src="https://github.com/the-curious-2025/AegisPT/actions/workflows/ci.yml/badge.svg" />
+   </a>
+</p>
 </div>
 
-This project automates repetitive penetration testing flow with deterministic logic:
+AegisPT is built for one thing: cutting repetitive manual workflow in recon and validation phases.
+It does not rely on LLM decisions. It runs deterministic steps, applies rules, saves sessions, and produces clean reports.
 
-- Stage engine: recon -> enumeration -> validation -> reporting
-- Rule engine: predefined if-then decision logic
-- Tool adapters: nmap, whatweb, nuclei
-- Session persistence and resume support
-- Markdown reporting and machine-readable JSON outputs
+## What It Does
 
-## Important
+- Runs staged flow: recon -> enumeration -> validation -> reporting
+- Uses rule-based next actions (no AI planning layer)
+- Integrates nmap, whatweb, and nuclei adapters
+- Persists sessions for resume/report reuse
+- Outputs structured JSON + Markdown report
 
-Use only on systems you own or are explicitly authorized to test.
+## Quick Install
 
-## Quick Start
-
-### Easy Install (Recommended)
+### Recommended
 
 ```bash
 git clone https://github.com/the-curious-2025/AegisPT.git
@@ -34,7 +39,7 @@ chmod +x scripts/quick_install.sh
 ./scripts/quick_install.sh
 ```
 
-### Manual Install
+### Manual
 
 ```bash
 python3 -m venv .venv
@@ -42,17 +47,21 @@ source .venv/bin/activate
 pip install -e .
 chmod +x scripts/install_kali_deps.sh
 ./scripts/install_kali_deps.sh
-
-aegispt run --target 10.10.10.10 --authorized --profile web
 ```
 
-## CLI
+## Usage
 
 ```bash
-aegispt run --target <TARGET> --authorized --profile web
-aegispt run --target <TARGET> --authorized --profile network
+aegispt run --target 10.10.10.10 --authorized --profile web
+aegispt run --target 10.10.10.10 --authorized --profile network
 aegispt resume --session-id <SESSION_ID>
 aegispt report --session-id <SESSION_ID>
+```
+
+Legacy alias is still available:
+
+```bash
+kali-autopentest run --target 10.10.10.10 --authorized --profile web
 ```
 
 ## One-Command Workflows
@@ -65,64 +74,37 @@ make run-net TARGET=10.10.10.10
 make report SESSION=<SESSION_ID>
 ```
 
-## Docker Workflow
+## Docker
 
 ```bash
 docker build -t aegispt:latest .
 docker run --rm -it aegispt:latest --help
 ```
 
-Banner colors are enabled automatically in interactive terminals.
-Set `NO_COLOR=1` to disable colored output.
+## Level 3 Quality
 
-Legacy command is still supported:
+- CI on push + pull request
+- Matrix test across Python versions
+- Lint gate (ruff)
+- Unit test suite for rules/session/CLI contracts
 
-```bash
-kali-autopentest run --target <TARGET> --authorized --profile web
-```
-
-## Professional Workflow (Kali)
-
-1. Execute an initial autonomous pass:
-
-```bash
-aegispt run --target https://target.tld --authorized --profile web
-```
-
-2. Open generated report and execute only high-value suggested actions.
-3. Re-run after every major finding confirmation to keep report and state updated.
-
-This pattern reduces manual context switching and preserves clean audit evidence.
-
-## Stack
-
-- Python: orchestration engine and CLI
-- Shell: installation/bootstrap scripts
-- Makefile: repeatable local workflows
-- Dockerfile: portable runtime container
-- JSON/Markdown: rules and reports
-
-## Level 2
-
-- Automated CI on GitHub Actions (push + pull requests)
-- Unit tests for core rule/session behaviors
-
-Run tests locally:
+Run locally:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -e . pytest
+pip install -e .[dev]
+ruff check .
 pytest -q
 ```
 
-## Safety Guardrails
+## Security Notes
 
-- Requires explicit `--authorized` confirmation
-- Designed for legal, authorized testing only
-- Every run generates structured session artifacts for auditability
+- Use only on targets you own or are explicitly authorized to test.
+- The tool requires explicit authorized flag in runtime commands.
+- Session/report outputs are local under home directory.
 
-## Output Paths
+Output paths:
 
-- Sessions: `~/.kali-autopentest/sessions/<session_id>.json`
-- Reports: `~/.kali-autopentest/reports/<session_id>.md`
+- ~/.kali-autopentest/sessions/<session_id>.json
+- ~/.kali-autopentest/reports/<session_id>.md
