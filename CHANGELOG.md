@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog, and this project follows Semantic Versioning.
 
+## [0.1.2] - 2026-05-11
+
+### Changed
+- Simplified the startup banner to a clean ASCII-only wordmark using the tool name.
+- Synchronized the README banner with the terminal banner.
+- Prepared the next release tag to match the final banner state.
+
 ## [0.1.1] - 2026-05-11
 
 ### Changed
