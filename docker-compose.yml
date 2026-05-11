@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  aegispt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aegispt
+    stdin_open: true
+    tty: true
+    command: ["--help"]
