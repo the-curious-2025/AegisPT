@@ -2,12 +2,10 @@
 
 <div align="center">
 <pre>
-      _                _     ____ _____
-    / \   ___  __ _ (_)___|  _ \_   _|
-   / _ \ / _ \/ _` || / __| |_) || |
- / ___ \  __/ (_| || \__ \  __/ | |
-/_/   \_\___|\__, |_|___/_|    |_|
-                   |___/
+========================================
+                 AEGISPT
+     DETERMINISTIC PENTEST ORCHESTRATOR
+========================================
 </pre>
 <p><strong>Fast, deterministic pentest orchestration for Kali Linux.</strong></p>
 <p>
@@ -87,6 +85,20 @@ docker run --rm -it aegispt:latest --help
 - Matrix test across Python versions
 - Lint gate (ruff)
 - Unit test suite for rules/session/CLI contracts
+
+## Releases
+
+- Changelog is tracked in CHANGELOG.md.
+- Creating a Git tag like `v0.1.1` triggers the release workflow.
+- The workflow builds wheel/sdist and publishes a GitHub Release with generated notes.
+- The `make release VERSION=v0.1.1` helper validates the code, builds artifacts, and creates a local annotated tag.
+
+Tag example:
+
+```bash
+make release VERSION=v0.1.1
+git push origin v0.1.1
+```
 
 Run locally:
 
